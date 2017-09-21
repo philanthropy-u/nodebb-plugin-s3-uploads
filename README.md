@@ -14,6 +14,14 @@ This plugin is a fork of [nodebb-plugin-s3-uploads](https://github.com/earthsenz
 
 A plugin for NodeBB to take file uploads and store them on S3, uses the `filter:uploadImage` hook in NodeBB. 
 
+# Custom changes and config for PhilU
+
+Now the plugin has been configured to take variables from the NodeBB config.json file. Two keys have to be set in the following format
+
+"aws_access_key_id": "INSERT_ACCESS_KEY_ID",
+"aws_secret_access_key": "INSERT_SECRET_ACCESS_KEY"
+
+The above override any config below listed. It is the recommended way for PhilU project.
 
 ## S3 Uploads Configuration
 
