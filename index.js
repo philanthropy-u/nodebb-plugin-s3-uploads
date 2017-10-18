@@ -19,16 +19,13 @@ var plugin = {}
 
 var S3Conn = null;
 var settings = {
-	"accessKeyId": false,
-	"secretAccessKey": false,
+	"accessKeyId": nconf.get("aws_access_key_id"),
+	"secretAccessKey": nconf.get("aws_secret_access_key"),
 	"region": process.env.AWS_DEFAULT_REGION || "us-east-1",
 	"bucket": process.env.S3_UPLOADS_BUCKET || undefined,
 	"host": process.env.S3_UPLOADS_HOST || "s3.amazonaws.com",
 	"path": process.env.S3_UPLOADS_PATH || undefined
 };
-
-var accessKeyIdFromDb = false;
-var secretAccessKeyFromDb = false;
 
 function fetchSettings(callback) {
 	db.getObjectFields(Package.name, Object.keys(settings), function (err, newSettings) {
@@ -38,23 +35,6 @@ function fetchSettings(callback) {
 				callback(err);
 			}
 			return;
-		}
-
-		accessKeyIdFromDb = false;
-		secretAccessKeyFromDb = false;
-
-		if (newSettings.accessKeyId) {
-			settings.accessKeyId = newSettings.accessKeyId;
-			accessKeyIdFromDb = true;
-		} else {
-			settings.accessKeyId = false;
-		}
-
-		if (newSettings.secretAccessKey) {
-			settings.secretAccessKey = newSettings.secretAccessKey;
-			secretAccessKeyFromDb = false;
-		} else {
-			settings.secretAccessKey = false;
 		}
 
 		if (!newSettings.bucket) {
