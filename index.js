@@ -143,8 +143,8 @@ function renderAdmin(req, res) {
 		path: settings.path,
 		forumPath: forumPath,
 		region: settings.region,
-		accessKeyId: (accessKeyIdFromDb && settings.accessKeyId) || "",
-		secretAccessKey: (accessKeyIdFromDb && settings.secretAccessKey) || "",
+		accessKeyId: (settings.accessKeyId) || "",
+		secretAccessKey: (settings.secretAccessKey) || "",
 		csrf: token
 	};
 

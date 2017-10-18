@@ -1,6 +1,6 @@
 {
-  "name": "nodebb-plugin-s3-uploads-updated",
-  "version": "0.3.15",
+  "name": "nodebb-plugin-s3-uploads-philu",
+  "version": "0.3.16",
   "description": "A plugin for NodeBB to take file uploads and store them on S3 updated for 1.0",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/louiseMcMahon/nodebb-plugin-s3-uploads.git"
+    "url": "https://github.com/philanthropy-u/nodebb-plugin-s3-uploads.git"
   },
   "keywords": [
     "nodebb",
@@ -21,11 +21,12 @@
   "contributors": [
     "Barış Soner Uşaklı <barisusakli@gmail.com>",
     "Joseph Chen <joseph.chen@gmail.com>",
-    "louise McMahon <louise@louisemcmahon.co.uk>"
+    "louise McMahon <louise@louisemcmahon.co.uk>",
+    "Muhammad Osama Arshad <osama.arshad@arbisoft.com>"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/louiseMcMahon/nodebb-plugin-s3-uploads/issues"
+    "url": "https://github.com/philanthropy-u/nodebb-plugin-s3-uploads/issues"
   },
   "nbbpm": {
     "compatibility": "^1.5.0"
