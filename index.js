@@ -285,10 +285,12 @@ function uploadToS3(filename, err, buffer, callback) {
 
 	var s3KeyPath = s3Path.replace(/^\//, ""); // S3 Key Path should not start with slash.
 
+	var filenameWithoutExt = filename.split(path.extname(filename))[0];
+
 	var params = {
 		Bucket: settings.bucket,
 		ACL: "public-read",
-		Key: s3KeyPath + filename + "-philu-" + uuid() + path.extname(filename),
+		Key: s3KeyPath + filenameWithoutExt + "-philu-" + uuid() + path.extname(filename),
 		Body: buffer,
 		ContentLength: buffer.length,
 		ContentType: mime.lookup(filename)
