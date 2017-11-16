@@ -288,7 +288,7 @@ function uploadToS3(filename, err, buffer, callback) {
 	var params = {
 		Bucket: settings.bucket,
 		ACL: "public-read",
-		Key: s3KeyPath + uuid() + path.extname(filename),
+		Key: s3KeyPath + "-%philu%-"+ uuid() + path.extname(filename),
 		Body: buffer,
 		ContentLength: buffer.length,
 		ContentType: mime.lookup(filename)
