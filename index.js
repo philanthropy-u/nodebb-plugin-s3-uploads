@@ -282,9 +282,9 @@ function uploadToS3(filename, err, buffer, callback) {
 	else {
 		s3Path = "/";
 	}
-
 	var s3KeyPath = s3Path.replace(/^\//, ""); // S3 Key Path should not start with slash.
-	var fileName = filename.split(path.extname(filename))[0];
+	var fileExtentions = path.extname(filename) != null && path.extname(filename) != "" ? path.extname(filename) : null;
+	var fileName = fileExtentions != null ? filename.split()[0] : filename;
 	var uploadFileName = fileName.split(' ').join('-');
 
 	var params = {
