@@ -211,7 +211,7 @@ plugin.uploadImage = function (data, callback) {
 		}
 
 		fs.readFile(image.path, function (err, buffer) {
-			uploadToS3(image.name, err, buffer, callback);
+			uploadToS3(image.name, err, buffer, 'uploadImage', callback);
 		});
 	}
 	else {
@@ -261,11 +261,11 @@ plugin.uploadFile = function (data, callback) {
 	}
 
 	fs.readFile(file.path, function (err, buffer) {
-		uploadToS3(file.name, err, buffer, callback);
+		uploadToS3(file.name, err, buffer, 'uploadFile', callback);
 	});
 };
 
-function uploadToS3(filename, err, buffer, callback) {
+function uploadToS3(filename, err, buffer, type, callback) {
 	if (err) {
 		return callback(makeError(err));
 	}
@@ -287,10 +287,16 @@ function uploadToS3(filename, err, buffer, callback) {
 	var fileName = fileExtentions != null ? filename.split(fileExtentions)[0] : filename;
 	var uploadFileName = fileName.split(' ').join('-');
 
+	var fileKey = '';
+	if(type === 'uploadImage'){
+        fileKey = s3KeyPath + uploadFileName + uuid() + path.extname(filename);
+	}else {
+        fileKey = s3KeyPath + uploadFileName + "-%philu%-"+ uuid() + path.extname(filename);
+	}
 	var params = {
 		Bucket: settings.bucket,
 		ACL: "public-read",
-		Key: s3KeyPath + uploadFileName + "-%philu%-"+ uuid() + path.extname(filename),
+		Key: fileKey,
 		Body: buffer,
 		ContentLength: buffer.length,
 		ContentType: mime.lookup(filename)
