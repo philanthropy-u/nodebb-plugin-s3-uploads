@@ -21,8 +21,8 @@ var S3Conn = null;
 var settings = {
 	"accessKeyId": nconf.get("aws_access_key_id"),
 	"secretAccessKey": nconf.get("aws_secret_access_key"),
-	"region": process.env.AWS_DEFAULT_REGION || "us-east-1",
-	"bucket": process.env.S3_UPLOADS_BUCKET || undefined,
+	"region": nconf.get("aws_default_region") || "us-east-1",
+	"bucket": nconf.get("bucket") || undefined,
 	"host": process.env.S3_UPLOADS_HOST || "s3.amazonaws.com",
 	"path": process.env.S3_UPLOADS_PATH || undefined
 };
